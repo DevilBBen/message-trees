@@ -11,8 +11,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Data
-//@Root(name = "OBDCreateResponse")
-//@ApiModel(value = "OBDCreateResponse", description = "OBD挂测结果返回能力响应")
 @Schema(name = "用户信息表",description = "用户信息实体")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
