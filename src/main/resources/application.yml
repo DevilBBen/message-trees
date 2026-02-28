@@ -1,3 +1,55 @@
+spring:
+  application:
+    name: message-trees
+
+  datasource:
+    url: jdbc:mysql://47.102.194.152:3306/healthy_data?useSSL=false&serverTimezone=UTC
+    username: root
+    password: DevilBBen1997
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+
+
+  cache:
+    type: redis
+
+  data:
+    redis:
+      host: 47.102.194.152
+      password: DevilBBen1997
+      port: 6379
+      database: 0
+      connect-timeout: 10s
+      timeout: 3s
+      lettuce:
+        shutdown-timeout: 4000
+        pool:
+          #最大连接数
+          max-active: 8
+          #连接的最大等待阻塞的时间
+          max-wait: 10000
+          ##最大和最小空闲连接
+          min-idle: 0
+          max-idle: 8
+
+mybatis-plus:
+  mapper-locations:
+    classpath: /mapper/**/*.xml
+
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
