@@ -5,6 +5,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.enums.ParameterStyle;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +32,25 @@ public class BodyController {
     })
     @PostMapping("/bodyParamHeaderPath/{id}")
     public ResponseEntity<JSONObject> bodyParamHeaderPath(@PathVariable("id") String id, @RequestHeader("token") String token, @RequestParam("name")String name, @RequestBody JSONObject fileResp){
+//        User.setName(fileResp.getName()+",receiveName:"+name+",token:"+token+",pathID:"+id);
+        return ResponseEntity.ok(fileResp);
+    }
+
+    @Operation(summary = "用户请求")
+    @Parameters({
+            @Parameter(name = "body",
+                    description = "请求对象",
+                    required = true,
+                    in = ParameterIn.QUERY,
+                    style = ParameterStyle.DEEPOBJECT
+//                    ,content = @Content(schema = @Schema(implementation = User.class)),
+//                    schema = @Schema(implementation = User.class)
+                    )
+    })
+
+    @ApiResponses(@ApiResponse())
+    @PostMapping("/insertUser")
+    public ResponseEntity insertUser(@RequestBody User fileResp){
 //        User.setName(fileResp.getName()+",receiveName:"+name+",token:"+token+",pathID:"+id);
         return ResponseEntity.ok(fileResp);
     }
